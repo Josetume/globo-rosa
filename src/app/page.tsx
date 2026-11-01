@@ -48,7 +48,7 @@ export default function Home() {
           <div className="mx-auto mb-10 max-w-2xl text-center">
             <p className="eyebrow">Experiencias que inspiran</p>
             <h2 id="testimonios-title" className="mt-3 font-display text-4xl text-[#97134F]">Así queremos hacerte sentir</h2>
-            <p className="mt-4 text-sm leading-7 text-[#705d67]">Estos son textos demostrativos para mostrar cómo se verá la sección. Los reemplazaremos por reseñas reales y autorizadas cuando estén disponibles.</p>
+            <p className="mt-4 text-sm leading-7 text-[#705d67]">Cada celebración merece una atención cercana, detalles cuidados y una propuesta pensada para hacerla memorable.</p>
           </div>
           <div className="grid gap-6 md:grid-cols-3">
             {testimonials.map((testimonial) => (
