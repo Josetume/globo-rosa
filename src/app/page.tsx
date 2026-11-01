@@ -1,11 +1,12 @@
 ﻿import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Heart, Palette, ShieldCheck, WandSparkles } from 'lucide-react';
+import { ArrowRight, Heart, Palette, ShieldCheck, Star, WandSparkles } from 'lucide-react';
 import { Hero } from '@/components/home/Hero';
 import { ServiceCard } from '@/components/home/ServiceCard';
 import { services } from '@/data/services';
 import { gallery } from '@/data/gallery';
 import { WhatsAppLink } from '@/components/shared/WhatsAppLink';
+import { testimonials } from '@/data/testimonials';
 
 export default function Home() {
   const celebrations = ['Cumpleaños infantiles', 'Cumpleaños de adultos', 'Graduaciones', 'Baby showers', 'Decoraciones temáticas'];
@@ -42,7 +43,29 @@ export default function Home() {
         </div>
       </section>
       <section className="section-pad"><div className="container-page"><div className="mb-10 text-center"><p className="eyebrow">Por qué elegir Globo Rosa</p><h2 className="mt-3 font-display text-4xl text-[#97134F]">Un proceso cercano y bien cuidado</h2></div><div className="grid gap-5 md:grid-cols-3">{[[Heart, 'Escuchamos tu idea', 'Cada propuesta parte de la ocasión que quieres celebrar.'], [Palette, 'Diseñamos con intención', 'Cuidamos la paleta, los detalles y la armonía del espacio.'], [ShieldCheck, 'Acompañamos el proceso', 'Te orientamos para que cotizar sea claro y sencillo.']].map(([Icon, title, text]) => { const CurrentIcon = Icon as typeof Heart; return <div className="soft-card p-7 text-center" key={title as string}><CurrentIcon className="mx-auto text-[#D94D83]" size={30} /><h3 className="mt-5 font-display text-2xl text-[#97134F]">{title as string}</h3><p className="mt-3 text-sm leading-6 text-[#705d67]">{text as string}</p></div>; })}</div></div></section>
-      <section className="bg-white section-pad"><div className="container-page soft-card p-8 text-center"><p className="eyebrow">Testimonios</p><h2 className="mt-3 font-display text-4xl text-[#97134F]">Opiniones de clientes próximamente</h2><p className="mx-auto mt-4 max-w-xl text-[#705d67]">Esta sección queda preparada para incorporar reseñas verificables cuando Globo Rosa las tenga disponibles.</p></div></section>
+      <section className="bg-white section-pad" aria-labelledby="testimonios-title">
+        <div className="container-page">
+          <div className="mx-auto mb-10 max-w-2xl text-center">
+            <p className="eyebrow">Experiencias que inspiran</p>
+            <h2 id="testimonios-title" className="mt-3 font-display text-4xl text-[#97134F]">Así queremos hacerte sentir</h2>
+            <p className="mt-4 text-sm leading-7 text-[#705d67]">Estos son textos demostrativos para mostrar cómo se verá la sección. Los reemplazaremos por reseñas reales y autorizadas cuando estén disponibles.</p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
+            {testimonials.map((testimonial) => (
+              <article key={testimonial.name} className="soft-card flex h-full flex-col p-7">
+                <div className="flex gap-1" aria-label={`${testimonial.rating} de 5 estrellas`}>
+                  {Array.from({ length: 5 }, (_, index) => <Star key={index} size={18} fill={index < testimonial.rating ? 'currentColor' : 'none'} className={index < testimonial.rating ? 'text-[#B99A56]' : 'text-[#e6c5d2]'} aria-hidden="true" />)}
+                </div>
+                <blockquote className="mt-5 flex-1 font-display text-xl leading-8 text-[#503b46]">“{testimonial.comment}”</blockquote>
+                <footer className="mt-6 border-t border-pink-100 pt-4">
+                  <p className="font-semibold text-[#97134F]">{testimonial.name}</p>
+                  <p className="mt-1 text-sm text-[#705d67]">{testimonial.occasion}</p>
+                </footer>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
       <section className="bg-[#97134F] py-16 text-center text-white"><div className="container-page"><WandSparkles className="mx-auto text-[#F5B6CC]" /><h2 className="mt-4 font-display text-4xl">¿Lista para hacer especial tu próxima celebración?</h2><p className="mx-auto mt-4 max-w-xl text-pink-100">Cuéntanos qué estás imaginando y conversemos sobre tu evento.</p><WhatsAppLink label="Cotizar por WhatsApp" className="mt-7 inline-flex rounded-full bg-white px-6 py-3 font-bold text-[#97134F]" /></div></section>
     </>
   );
